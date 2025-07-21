@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+  <title></title>
+  <style>
+    :root {
+      --primary-color: #800020;
+      --bg-color: #f0f2f5;
+      --text-color: #1c1e21;
+      --card-color: #fff;
+      --border-color: #ccd0d5;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    header {
+      background: linear-gradient(90deg, #081891,#83c7fb,#144766);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    header img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    header h1 {
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 32px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+
+    .container {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .proyecto {
+      background-color: var(--card-color);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+    }
+
+    .proyecto h2 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .galeria img {
+      width: 250px;
+      border-radius: 6px;
+      border: 2px solid var(--border-color);
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.05);
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #666;
+      margin: 50px 0 20px;
+    }
+
+    /* Lightbox avanzado */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 80%;
+      max-height: 80%;
+      margin-bottom: 10px;
+    }
+
+    .lightbox-thumbs {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .lightbox-thumbs img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .lightbox-thumbs img.active {
+      border: 2px solid var(--primary-color);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      font-size: 50px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px;
+    }
+
+    .lightbox-prev {
+      left: 20px;
+    }
+
+    .lightbox-next {
+      right: 20px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      font-size: 40px;
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .galeria img {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="banner.png" alt="Encabezado" />
+  <h1></h1>
+</header>
+
+<div class="container">
+  <div class="proyecto">
+    <h2>Resumen de Obras de Carpintería</h2>
+    <p>Obras a realizar:</p>
+  </div>
+
+<div class="container">
+  <div class="proyecto">
+    <h2>1. Mueble para el Área de Despacho</h2>
+    <p>Mueble modular de 10 metros de largo, dividido en 5 segmentos de 2 metros. Interior con montante y entrepaños que ofrecen 4 espacios por módulo. Revestimiento en blanco mate con tope negro y cantos en PVC. Base retranqueada para proteger la integridad del mobiliario.</p>
+  </div>
+
+  <div class="proyecto">
+    <h2>2. Mueble para el Área de Paquetería</h2>
+    <p>Incluye estantería de 112 compartimientos (39x39x40) y mostrador protector de 5.6 m, dividido en 3 módulos con 18 espacios de almacenamiento. Todo fabricado en melamina blanca con revestimientos decorativos blancos.</p>
+  </div>
+
+  <div class="proyecto">
+    <h2>3. Mueble para Área de Luces Navideñas</h2>
+    <p>Diseño de 7.6 metros de largo, compuesto por 4 módulos. Cada unidad tiene 1.90 m de ancho, con múltiples espacios de almacenamiento. Fabricado en melamina blanca y revestido en tonos blancos decorativos.</p>
+  </div>
+
+  <h2 style="margin-top:40px;">Galería de Imágenes</h2>
+  <div class="galeria" id="galeria">
+    <img src="MANGO BAJITO MUEBLE 2.1.png" alt="Mueble 1" />
+    <img src="MANGO BAJITO MUEBLE 2.png" alt="Mueble 2" />
+    <img src="mueble de caja PINTESCO.png" alt="Mueble 3" />
+    <img src="MANGO BAJITO MUEBLE 3.png" alt="Mueble 4" />
+  </div>
+</div>
+ <div class="proyecto">
+    <h2>5. Presupuesto</h2>
+    <p>Presupuesto detallado de obras presentadas.</p>
+  </div>
+<table style="width:100%; border-collapse: collapse;">
+  <thead>
+    <tr style="background-color:#E30613; color:white;">
+      <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Nº</th>
+      <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">CONCEPTO</th>
+      <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">CANT</th>
+      <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">PRECIO U</th>
+      <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">TOTAL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 8px; border: 1px solid #ddd;">1</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">MUEBLE DE DESPACHO</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">5</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">640.00</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">3,200.00</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; border: 1px solid #ddd;">2</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">MUEBLE DE PAQUETERIA PARED</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">1</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">3,100.00</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">3,100.00</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; border: 1px solid #ddd;">3</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">MUEBLE PAQUETERIA MOSTRADOR</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">3</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">620.00</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">1,860.00</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; border: 1px solid #ddd;">4</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">MUEBLE DE DESPACHO DE LUCES</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">4</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">610.00</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">2,440.00</td>
+    </tr>
+    <tr>
+      <td colspan="3" style="padding: 8px; border: 1px solid #ddd;"></td>
+      <td style="padding: 8px; border: 1px solid #ddd; background-color:#E30613; color:white; font-weight:bold;">TOTAL</td>
+      <td style="padding: 8px; border: 1px solid #ddd; font-weight:bold;">10,600.00</td>
+    </tr>
+    <tr>
+      <td colspan="3" style="padding: 8px; border: 1px solid #ddd;"></td>
+      <td style="padding: 8px; border: 1px solid #ddd; background-color:#E30613; color:white; font-weight:bold;">INICIAL</td>
+      <td style="padding: 8px; border: 1px solid #ddd; font-weight:bold;">7,420.00</td>
+    </tr>
+    <tr>
+      <td colspan="3" style="padding: 8px; border: 1px solid #ddd;"></td>
+      <td style="padding: 8px; border: 1px solid #ddd; background-color:#E30613; color:white; font-weight:bold;">RESTO</td>
+      <td style="padding: 8px; border: 1px solid #ddd; font-weight:bold;">3,180.00</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Lightbox HTML -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <span class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#10094;</span>
+  <img id="lightbox-img" src="" alt="Imagen ampliada" />
+  <span class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#10095;</span>
+  <div class="lightbox-thumbs" id="lightbox-thumbs"></div>
+</div>
+
+<div class="footer">
+  Proyecto desarrollado por Wood Desing.ve &mdash; Todos los derechos reservados 2025.
+</div>
+
+<script>
+  const galeria = document.querySelectorAll('#galeria img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxThumbs = document.getElementById('lightbox-thumbs');
+  let currentIndex = 0;
+
+  const images = Array.from(galeria).map(img => img.src);
+
+  galeria.forEach((img, index) => {
+    img.addEventListener('click', () => openLightbox(index));
+  });
+
+  function openLightbox(index) {
+    currentIndex = index;
+    lightbox.classList.add('active');
+    updateLightbox();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+  }
+
+  function changeImage(direction) {
+    currentIndex = (currentIndex + direction + images.length) % images.length;
+    updateLightbox();
+  }
+
+  function updateLightbox() {
+    lightboxImg.src = images[currentIndex];
+    updateThumbnails();
+  }
+
+  function updateThumbnails() {
+    lightboxThumbs.innerHTML = '';
+    images.forEach((src, i) => {
+      const thumb = document.createElement('img');
+      thumb.src = src;
+      if (i === currentIndex) thumb.classList.add('active');
+      thumb.addEventListener('click', () => {
+        currentIndex = i;
+        updateLightbox();
+      });
+      lightboxThumbs.appendChild(thumb);
+    });
+  }
+</script>
+
+</body>
+</html>
