@@ -38,9 +38,11 @@
 
     header img {
       width: 100%;
-      height: 250px; /* Ajusta la altura para una mejor visualización */
-      object-fit: cover;
+      height: 250px; /* Mantén una altura fija para el contenedor */
+      object-fit: contain; /* Esta es la clave para que no se corte y se vea completa */
       display: block;
+      /* Si la imagen tiene un fondo transparente y quieres que el degradado del header se vea detrás, puedes usar: */
+      /* background-color: transparent; */
     }
 
     .site-title-container {
@@ -339,6 +341,13 @@
     }
 
     @media (max-width: 480px) {
+      header {
+        min-height: 180px; /* Reduce un poco la altura mínima del header en móviles */
+      }
+      header img {
+        height: 180px; /* Ajusta la altura de la imagen para pantallas más pequeñas */
+        object-fit: contain; /* Asegura que la imagen se adapte también en pantallas pequeñas */
+      }
       .site-title-container h1 {
         font-size: 2em;
         padding: 8px 15px;
@@ -373,7 +382,7 @@
 <div class="container">
   <div class="proyecto">
     <h2>Resumen de Obras de Carpintería</h2>
-    <p>Presentamos para usted nuestro proyecto de mobiliario a medida, meticulosamente diseñados y fabricados para satisfacer sus necesidades específicas. Nuestro trabajo combina funcionalidad, durabilidad y atractivo estético para transformar espacios.</p>
+    <p>Explore una selección de nuestros mejores proyectos de carpintería a medida, meticulosamente diseñados y fabricados para satisfacer las necesidades específicas de nuestros clientes. Nuestro trabajo combina funcionalidad, durabilidad y atractivo estético para transformar espacios.</p>
   </div>
 
   <div class="proyecto">
@@ -391,15 +400,7 @@
     <p>Este mobiliario especializado, que se extiende a lo largo de 7.6 metros, está ingeniosamente diseñado para organizar decoraciones de temporada. Se compone de 4 módulos, cada uno de 1.90 metros de ancho, ofreciendo múltiples compartimentos de almacenamiento para varios artículos. Construida íntegramente en **melamina blanca** y acabada con elegantes tonos blancos decorativos, esta unidad proporciona una solución ordenada y accesible para su colección de luces festivas, manteniéndolas protegidas y organizadas año tras año.</p>
   </div>
 
-<div class="proyecto">
-    <h2>4. Materiales a utilizar ✨</h2>
-    <p>Melamina Blanca 1 Cara 15mm.</p>
-    <p>Cantos Decorativos PVC.</p>
-    <p>Laminados Decorativos (Blancos y Negros).</p>
-    <p>Madera de Pino.</p>
-  </div>
-
-  <h2 class="section-heading">5. Galería de Imágenes</h2>
+  <h2 class="section-heading">Galería de Imágenes</h2>
   <div class="galeria" id="galeria">
     <img src="MANGO BAJITO MUEBLE 2.1.png" alt="Mueble de Despacho" />
     <img src="MANGO BAJITO MUEBLE 2.png" alt="Mueble de Paquetería - Estantería" />
@@ -408,7 +409,7 @@
   </div>
 
   <div class="proyecto">
-    <h2>6. Presupuesto Detallado 💲</h2>
+    <h2>5. Presupuesto Detallado 💲</h2>
     <p>A continuación, se presenta un desglose detallado del presupuesto propuesto para los trabajos de carpintería:</p>
   </div>
   <table>
